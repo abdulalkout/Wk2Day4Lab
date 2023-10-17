@@ -51,14 +51,58 @@ function returnQuarters (billAmount, itemPrice ){
 returnQuarters(10, 2.5)
 
 
-//4.    Write a function that prints out how many bills you would recieve in change after paying a certain amount.  
+//4. Write a function that prints out how many bills you would recieve in change after paying a certain amount.  
 // Return in as large denominations as possible. Parameters should be amount paind and amount cost
 
 function bills (paid, cost){
     let remin = paid - cost;
-    const bills = [0.25, 0.5, 1, 2, 5, 10, 50, 100, 1000];
+    let bills = ["hundreds", "fifties", "tens", "fives", "twos", "ones"];
+    const giveBack =[];
+    let hundreds = 0;
+    let fifty = 0;
+    let tens = 0;
+    let fives = 0;
+    let twos = 0;
+    let ones = 0;
+    if(remin !== 0){
+        while(remin >= 100){
+            remin -= 100;
+            hundreds +=1;
+        }
+        giveBack.push(hundreds);
+        while(remin >= 50){
+            remin -= 50;
+            fifty +=1;
+        }
+        giveBack.push(fifty);
+        while(remin >= 10){
+            remin -= 10;
+            tens +=1;
+        }
+        giveBack.push(tens)
+        while(remin >= 5){
+            remin -= 5;
+            fives +=1;
+        }
+        giveBack.push(fives)
+        while(remin >= 2){
+            remin -= 2;
+            twos +=1;
+        }
+        giveBack.push(twos)
+        while(remin >= 1){
+            remin -= 1;
+            ones +=1;
+        }
+        giveBack.push(ones);          
+    }
+    for(let i =0; i < bills.length; i++){
+        console.log(`${giveBack[i]} ${bills[i]}`)
+    }
 
 }
+
+bills(254, 100);
 
 // 5.   Write a program that uses console.log to print all the numbers from 1 to 100 with two exceptions. For numbers divisible by 3, 
 // print "Fizz" instead of the number, and for numbers divisible by 5 (and not 3), print "Buzz" instead. When you have that working, 
@@ -77,6 +121,5 @@ function bills (paid, cost){
         }else{
             console.log(i)
         }
-        
     }
 })()
